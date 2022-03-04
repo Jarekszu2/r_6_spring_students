@@ -13,8 +13,16 @@
         <th>Name</th>
         <th>Surname</th>
         <th>Age</th>
-        <th>Alive</th>
+        <th>AliveA</th>
         <th></th> <!-- pusta (na przyciski, później) -->
+    </tr>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.getId()}"></td>
+        <td th:text="${student.getName()}"></td>
+        <td th:text="${student.getSurname()}"></td>
+        <td th:text="${student.getAge()}"></td>
+        <td th:text="${student.isAlive()}"></td>
+        <td><!--puste na guziki--></td>
     </tr>
 </table>
 </body>
