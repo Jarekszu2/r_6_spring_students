@@ -22,7 +22,14 @@
         <td th:text="${student.getSurname()}"></td>
         <td th:text="${student.getAge()}"></td>
         <td th:text="${student.isAlive()}"></td>
-        <td><!--puste na guziki--></td>
+        <td>
+            <a th:href="@{'/student/edit/' + ${student.getId()}}">Edyuj</a>
+            <a th:href="@{'/student/delete/' + ${student.getId()}}">Usun</a>
+            <br/>
+            <a th:href="@{'/student/edit?edited_student_id=' + ${student.getId()}}">Edyuj param</a>
+            <a th:href="@{'/student/delete?deleted_id=' + ${student.getId()}}">Usun param</a>
+
+        </td>
     </tr>
 </table>
 </body>

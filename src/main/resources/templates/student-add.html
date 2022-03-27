@@ -7,6 +7,7 @@
 <body>
 <h1>Student add</h1>
 <form th:action="@{/student/add}" method="post" th:object="${student}" >
+    <input type="hidden" th:field="*{id}" th:value="*{id}">
     Name: <input type="text" th:field="*{name}" th:value="*{name}"/>
     Surname: <input type="text" th:field="*{surname}" th:value="*{surname}"/>
     Age: <input type="number" th:field="*{age}" th:value="*{age}"/>
