@@ -1,9 +1,13 @@
 package jarek.springstudents.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -22,6 +26,14 @@ public class Student {
     private int age;
 
     private boolean alive;
+
+    @Formula(value = "(SELECT AVG(g.value) FROM grade g WHERE g.student_id = id)")
+    private Double average;
+
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @Cascade(value = {org.hibernate.annotations.CascadeType.REMOVE})
+    private Set<Grade> gradeList;
 
     public Student(String name, String surname, int age, boolean alive) {
         this.name = name;

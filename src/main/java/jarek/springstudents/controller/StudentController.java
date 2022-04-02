@@ -52,6 +52,17 @@ public class StudentController {
         return "redirect:/student/list";
     }
 
+    @GetMapping(path = "/grades/{studentId}")
+    public String studentGrades1(Model model,
+                                 @PathVariable(name = "studentId") Long student_id) {
+        Optional<Student> studentOptional =studentService.findById(student_id);
+        if (studentOptional.isPresent()) {
+            model.addAttribute("at_list_grades", studentOptional.get().getGradeList());
+            return "grade-list";
+        }
+        return "redirect:/student/list";
+    }
+
     @GetMapping(path = "/list")
     public String list(Model model) {
         List<Student> studentList = studentService.getStudentlist();

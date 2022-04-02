@@ -2,6 +2,7 @@ package jarek.springstudents.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -26,4 +27,11 @@ public class Grade {
 
     private double value;
 
+    @ToString.Exclude
+    @ManyToOne()
+    private Student student;
+    public Grade(GradeSubject subject, double value) {
+        this.subject = subject;
+        this.value = value;
+    }
 }
